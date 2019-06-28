@@ -1,1 +1,43 @@
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  height: 100%;
+  font-family: 'Comic Sans MS', sans-serif;
+}
+.flex-container {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  height: 150px;
+  width: 150px;
+  border: 2px solid rgb(0, 100, 255);
+  font-size: 50px
+}
+
+.cell:hover {
+  border-color: #fffaf0;
+}
+
+
+.game-board {
+  width: 462px;
+}
