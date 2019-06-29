@@ -11,7 +11,7 @@ $(() => {
 })
 
 $(() => {
-  $('.new-game').on('click', gameEvents.newGame)
+  $('#new-game').on('click', gameEvents.newGame)
 })
 
 $(() => {

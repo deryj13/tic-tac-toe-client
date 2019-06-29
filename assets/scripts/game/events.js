@@ -13,6 +13,7 @@ const newGame = function () {
   store.board = ['', '', '', '', '', '', '', '', '']
   store.player1 = 'X'
   store.player2 = 'O'
+  store.winner = ''
   $('.cell').text('')
 }
 
@@ -26,28 +27,91 @@ const oTracker = () => {
   console.log(store.board)
 }
 
-const move = function () {
-  store.movesPlayed++
-  if ($(event.target).text() === '') {
-    if (store.currentTurn === 1) {
-      $(event.target).text(store.player1)
-      $(event.target).css('color', 'blue')
-      xTracker()
-      ui.moveSuccess()
-      store.currentTurn++
-    } else {
-      $(event.target).text(store.player2)
-      $(event.target).css('color', 'red')
-      store.currentTurn--
-      oTracker()
-      ui.moveSuccess()
+const gameWon = function () {
+  if (store.movesPlayed > 4) {
+    if (store.board[0] !== '' && store.board[1] !== '' && store.board[2] !== '' &&
+    store.board[0] === store.board[1] && store.board[1] === store.board[2]) {
+      return true
+    } if (store.board[3] !== '' && store.board[4] !== '' && store.board[5] !== '' &&
+    store.board[3] === store.board[4] && store.board[4] === store.board[5]) {
+      return true
+    } if (store.board[6] !== '' && store.board[7] !== '' && store.board[8] !== '' &&
+    store.board[6] === store.board[7] && store.board[7] === store.board[8]) {
+      return true
+    } if (store.board[0] !== '' && store.board[3] !== '' && store.board[6] !== '' &&
+    store.board[0] === store.board[3] && store.board[3] === store.board[6]) {
+      return true
+    } if (store.board[1] !== '' && store.board[4] !== '' && store.board[7] !== '' &&
+    store.board[1] === store.board[4] && store.board[4] === store.board[7]) {
+      return true
+    } if (store.board[2] !== '' && store.board[5] !== '' && store.board[8] !== '' &&
+    store.board[2] === store.board[5] && store.board[5] === store.board[8]) {
+      return true
+    } if (store.board[0] !== '' && store.board[4] !== '' && store.board[8] !== '' &&
+    store.board[0] === store.board[4] && store.board[4] === store.board[8]) {
+      return true
+    } if (store.board[2] !== '' && store.board[4] !== '' && store.board[6] !== '' &&
+    store.board[2] === store.board[4] && store.board[4] === store.board[6]) {
+      return true
     }
   } else {
-    console.log(`illegal move!`)
+    return false
+  }
+}
+
+const checkForWinner = function () {
+  if (gameWon()) {
+    if (store.currentTurn === 1) {
+      store.winner = 'Player 1'
+      $('#gameMessage').text(store.winner + ', WINS!')
+    } else {
+      store.winner = 'Player 2'
+      $('#gameMessage').text(store.winner + ', WINS!')
+    }
+  }
+}
+
+function cellValue (value) {
+  return value.length !== 0
+}
+
+const checkForDraw = function () {
+  if (gameWon() !== true) {
+    if (store.board.every(cellValue)) {
+      store.winner = 'DRAW'
+      $('#gameMessage').text(`It's a ${store.winner} xD!`)
+    }
+  }
+}
+
+const move = function () {
+  store.movesPlayed++
+  if (gameWon() !== true) {
+    if ($(event.target).text() === '') {
+      if (store.currentTurn === 1) {
+        $(event.target).text(store.player1)
+        $(event.target).css('color', 'blue')
+        xTracker()
+        ui.player1MoveSuccess()
+        checkForDraw()
+        checkForWinner()
+        store.currentTurn++
+      } else {
+        $(event.target).text(store.player2)
+        $(event.target).css('color', 'red')
+        oTracker()
+        ui.player2MoveSuccess()
+        checkForDraw()
+        checkForWinner()
+        store.currentTurn--
+      }
+    } else {
+      console.log(`illegal move!`)
+    }
   }
 }
 
 module.exports = {
-  move,
-  newGame
+  newGame,
+  move
 }

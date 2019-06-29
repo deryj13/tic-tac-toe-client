@@ -3,15 +3,15 @@
 // const store = require('../store')
 
 const gameSuccessMessage = message => {
-  $('#message').text(message)
-  $('#message').removeClass('failure')
-  $('#message').addClass('success')
+  $('#gameMessage').text(message)
+  $('#gameMessage').removeClass('failure')
+  $('#gameMessage').addClass('success')
 }
 
 const gameFailureMessage = message => {
-  $('#message').text(message)
-  $('#message').removeClass('success')
-  $('#message').addClass('failure')
+  $('#gameMessage').text(message)
+  $('#gameMessage').removeClass('success')
+  $('#gameMessage').addClass('failure')
 }
 
 const newGameSuccess = () => {
@@ -23,9 +23,13 @@ const newGameFailure = () => {
   gameFailureMessage(`New game won't load :(`)
 }
 
-const moveSuccess = () => {
+const player1MoveSuccess = () => {
   console.log('move made!')
-  gameSuccessMessage('Turn Completed!')
+  gameSuccessMessage(`Nice! Player 2's turn!`)
+}
+const player2MoveSuccess = () => {
+  console.log('move made!')
+  gameSuccessMessage(`Awesome! Player 1's turn!`)
 }
 
 // we need to track current players, which we can do with currentTurn
@@ -41,5 +45,6 @@ const moveSuccess = () => {
 module.exports = {
   newGameSuccess,
   newGameFailure,
-  moveSuccess
+  player1MoveSuccess,
+  player2MoveSuccess
 }
