@@ -4,7 +4,7 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 
-const newGame = function () {
+const newGame = function (responseData) {
   api.createGame()
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
@@ -14,16 +14,21 @@ const newGame = function () {
   store.player1 = 'X'
   store.player2 = 'O'
   store.winner = ''
+  store.over = gameOver()
+  store.index = null
+  store.value = null
 }
 
 const xTracker = () => {
   store.board[$(event.target).attr('id')] = store.player1
-  console.log(store.board)
+  store.value = store.player1
+  store.index = $(event.target).attr('id')
 }
 
 const oTracker = () => {
   store.board[$(event.target).attr('id')] = store.player2
-  console.log(store.board)
+  store.value = store.player2
+  store.index = $(event.target).attr('id')
 }
 
 const gameWon = function () {
@@ -89,23 +94,29 @@ const checkForDraw = function () {
   }
 }
 
+const gameOver = function () {
+  if (gameWon() || drawGame()) {
+    return true
+  } else {
+    return false
+  }
+}
+
 const move = function () {
   store.movesPlayed++
-  if (gameWon() !== true) {
+  if (gameOver() !== true) {
     if ($(event.target).text() === '') {
       if (store.currentTurn === 1) {
         ui.player1MoveSuccess()
-        // $(event.target).text(store.player1)
-        // $(event.target).css('color', 'blue')
+        // moveTracker()
         xTracker()
         checkForDraw()
         checkForWinner()
         store.currentTurn++
       } else {
         ui.player2MoveSuccess()
-        // $(event.target).text(store.player2)
-        // $(event.target).css('color', 'red')
         oTracker()
+        // moveTracker()
         checkForDraw()
         checkForWinner()
         store.currentTurn--
@@ -115,7 +126,11 @@ const move = function () {
         ui.illegalMove()
       }
     }
-  }
+  } api.gameUpdate()
+  // .then(console.log('update successful'))
+  // .catch(console.log('update failure'))
+  // .then(ui.gameUpdateSuccess)
+  // .catch(ui.gameUpdateFailure)
 }
 
 module.exports = {

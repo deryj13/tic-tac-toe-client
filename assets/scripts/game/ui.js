@@ -14,8 +14,8 @@ const gameFailureMessage = message => {
   $('#gameMessage').addClass('failure')
 }
 
-const newGameSuccess = () => {
-  console.log('new game!')
+const newGameSuccess = (responseData) => {
+  store.game = responseData.game
   gameSuccessMessage('Good luck, have fun!')
   $('.cell').text('')
 }
@@ -25,13 +25,11 @@ const newGameFailure = () => {
 }
 
 const player1MoveSuccess = () => {
-  console.log('move made!')
   gameSuccessMessage(`Nice! Player 2's turn!`)
   $(event.target).text(store.player1)
   $(event.target).css('color', 'blue')
 }
 const player2MoveSuccess = () => {
-  console.log('move made!')
   gameSuccessMessage(`Awesome! Player 1's turn!`)
   $(event.target).text(store.player2)
   $(event.target).css('color', 'red')
@@ -50,6 +48,15 @@ const illegalMove = () => {
   console.log('illegal move!')
   gameFailureMessage('Invalid move!!!')
 }
+
+const gameUpdateSuccess = () => {
+  gameSuccessMessage('updated game!')
+}
+
+const gameUpdateFailure = () => {
+  gameFailureMessage(`game failed to update!`)
+}
+
 module.exports = {
   newGameSuccess,
   newGameFailure,
@@ -57,5 +64,7 @@ module.exports = {
   player2MoveSuccess,
   theWinner,
   draw,
-  illegalMove
+  illegalMove,
+  gameUpdateSuccess,
+  gameUpdateFailure
 }

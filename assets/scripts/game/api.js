@@ -14,18 +14,26 @@ const createGame = game => {
   })
 }
 
-// const moveUpdate = game => {
-//   return $.ajax({
-//     url: config.apiUrl + '/',
-//     data:,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
-//   })
-// }
+const gameUpdate = game => {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game.id,
+    data: {
+      'game': {
+        'cell': {
+          'index': store.index,
+          'value': store.value
+        },
+        'over': store.over
+      }
+    },
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
 module.exports = {
-  createGame
-  // makeMove
+  createGame,
+  gameUpdate
 }
