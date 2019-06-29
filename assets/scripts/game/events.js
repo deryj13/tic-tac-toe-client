@@ -14,7 +14,6 @@ const newGame = function () {
   store.player1 = 'X'
   store.player2 = 'O'
   store.winner = ''
-  $('.cell').text('')
 }
 
 const xTracker = () => {
@@ -63,10 +62,10 @@ const checkForWinner = function () {
   if (gameWon()) {
     if (store.currentTurn === 1) {
       store.winner = 'Player 1'
-      $('#gameMessage').text(store.winner + ', WINS!')
+      ui.theWinner()
     } else {
       store.winner = 'Player 2'
-      $('#gameMessage').text(store.winner + ', WINS!')
+      ui.theWinner()
     }
   }
 }
@@ -75,12 +74,18 @@ function cellValue (value) {
   return value.length !== 0
 }
 
-const checkForDraw = function () {
+const drawGame = function () {
   if (gameWon() !== true) {
     if (store.board.every(cellValue)) {
-      store.winner = 'DRAW'
-      $('#gameMessage').text(`It's a ${store.winner} xD!`)
+      return true
     }
+  }
+}
+
+const checkForDraw = function () {
+  if (drawGame()) {
+    store.winner = 'DRAW'
+    ui.draw()
   }
 }
 
@@ -89,24 +94,26 @@ const move = function () {
   if (gameWon() !== true) {
     if ($(event.target).text() === '') {
       if (store.currentTurn === 1) {
-        $(event.target).text(store.player1)
-        $(event.target).css('color', 'blue')
-        xTracker()
         ui.player1MoveSuccess()
+        // $(event.target).text(store.player1)
+        // $(event.target).css('color', 'blue')
+        xTracker()
         checkForDraw()
         checkForWinner()
         store.currentTurn++
       } else {
-        $(event.target).text(store.player2)
-        $(event.target).css('color', 'red')
-        oTracker()
         ui.player2MoveSuccess()
+        // $(event.target).text(store.player2)
+        // $(event.target).css('color', 'red')
+        oTracker()
         checkForDraw()
         checkForWinner()
         store.currentTurn--
       }
     } else {
-      console.log(`illegal move!`)
+      if (drawGame() !== true) {
+        ui.illegalMove()
+      }
     }
   }
 }

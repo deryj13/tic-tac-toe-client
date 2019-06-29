@@ -1,6 +1,6 @@
 'use strict'
 
-// const store = require('../store')
+const store = require('../store')
 
 const gameSuccessMessage = message => {
   $('#gameMessage').text(message)
@@ -17,6 +17,7 @@ const gameFailureMessage = message => {
 const newGameSuccess = () => {
   console.log('new game!')
   gameSuccessMessage('Good luck, have fun!')
+  $('.cell').text('')
 }
 
 const newGameFailure = () => {
@@ -26,25 +27,35 @@ const newGameFailure = () => {
 const player1MoveSuccess = () => {
   console.log('move made!')
   gameSuccessMessage(`Nice! Player 2's turn!`)
+  $(event.target).text(store.player1)
+  $(event.target).css('color', 'blue')
 }
 const player2MoveSuccess = () => {
   console.log('move made!')
   gameSuccessMessage(`Awesome! Player 1's turn!`)
+  $(event.target).text(store.player2)
+  $(event.target).css('color', 'red')
 }
 
-// we need to track current players, which we can do with currentTurn
-// establish players
-// if currentTurn === 1, its player 1's turn
-// if currentTurn === 2, its player 2's turn
-// add currentplayer to the board
-// if player makes a move, their value gets pushed to the board
-// board.push()
+const theWinner = () => {
+  gameSuccessMessage(`${store.winner}, WINS!`)
+}
 
-// let board = ['', '', '', '', '', '', '', '', '']
+const draw = () => {
+  console.log('draw')
+  gameSuccessMessage(`It's a ${store.winner}! Good game!`)
+}
 
+const illegalMove = () => {
+  console.log('illegal move!')
+  gameFailureMessage('Invalid move!!!')
+}
 module.exports = {
   newGameSuccess,
   newGameFailure,
   player1MoveSuccess,
-  player2MoveSuccess
+  player2MoveSuccess,
+  theWinner,
+  draw,
+  illegalMove
 }

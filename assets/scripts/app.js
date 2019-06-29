@@ -12,8 +12,5 @@ $(() => {
 
 $(() => {
   $('#new-game').on('click', gameEvents.newGame)
-})
-
-$(() => {
   $('.cell').on('click', gameEvents.move)
 })
