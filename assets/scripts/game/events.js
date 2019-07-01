@@ -14,7 +14,7 @@ const newGame = function (responseData) {
   store.player1 = 'X'
   store.player2 = 'O'
   store.winner = ''
-  store.over = gameOver()
+  store.over = false
   store.index = null
   store.value = null
 }
@@ -96,37 +96,43 @@ const checkForDraw = function () {
 
 const gameOver = function () {
   if (gameWon() || drawGame()) {
-    return true
-  } else {
-    return false
+    store.over = true
   }
 }
 
 const move = function () {
   store.movesPlayed++
-  if (gameOver() !== true) {
+  if (store.over !== true) {
     if ($(event.target).text() === '') {
       if (store.currentTurn === 1) {
-        ui.player1MoveSuccess()
-        // moveTracker()
         xTracker()
         checkForDraw()
         checkForWinner()
+        gameOver()
         store.currentTurn++
+        console.log(event.target)
+        api.gameUpdate()
+          .then(ui.player1MoveSuccess(event.target))
+          .catch(console.error)
+        console.log(store.board)
       } else {
         ui.player2MoveSuccess()
         oTracker()
-        // moveTracker()
         checkForDraw()
         checkForWinner()
+        gameOver()
         store.currentTurn--
+        api.gameUpdate()
+          .then(ui.player2MoveSuccess(event.target))
+          .catch(console.error)
+        console.log(store.board)
       }
     } else {
       if (drawGame() !== true) {
         ui.illegalMove()
       }
     }
-  } api.gameUpdate()
+  }
   // .then(console.log('update successful'))
   // .catch(console.log('update failure'))
   // .then(ui.gameUpdateSuccess)

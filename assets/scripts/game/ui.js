@@ -24,15 +24,20 @@ const newGameFailure = () => {
   gameFailureMessage(`New game won't load :(`)
 }
 
-const player1MoveSuccess = () => {
-  gameSuccessMessage(`Nice! Player 2's turn!`)
-  $(event.target).text(store.player1)
-  $(event.target).css('color', 'blue')
+const player1MoveSuccess = (event) => {
+  $(event).text(store.player1)
+  $(event).css('color', 'blue')
+  if (!store.over) {
+    gameSuccessMessage(`Nice! Player 2's turn!`)
+  }
 }
-const player2MoveSuccess = () => {
-  gameSuccessMessage(`Awesome! Player 1's turn!`)
-  $(event.target).text(store.player2)
-  $(event.target).css('color', 'red')
+
+const player2MoveSuccess = event => {
+  $(event).text(store.player2)
+  $(event).css('color', 'red')
+  if (!store.over) {
+    gameSuccessMessage(`Awesome! Player 1's turn!`)
+  }
 }
 
 const theWinner = () => {
@@ -49,14 +54,6 @@ const illegalMove = () => {
   gameFailureMessage('Invalid move!!!')
 }
 
-const gameUpdateSuccess = () => {
-  gameSuccessMessage('updated game!')
-}
-
-const gameUpdateFailure = () => {
-  gameFailureMessage(`game failed to update!`)
-}
-
 module.exports = {
   newGameSuccess,
   newGameFailure,
@@ -64,7 +61,5 @@ module.exports = {
   player2MoveSuccess,
   theWinner,
   draw,
-  illegalMove,
-  gameUpdateSuccess,
-  gameUpdateFailure
+  illegalMove
 }
