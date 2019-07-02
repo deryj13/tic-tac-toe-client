@@ -23,7 +23,7 @@
           <h2>Sign In!</h2>
           <input type="email" name="credentials[email]" placeholder="Email">
           <input type="password" name="credentials[password]" placeholder="Password">
-          <button type="submit">Sign in</button>
+          <button class="btn-primary" type="submit">Sign in</button>
         </form>
 
         <form id="sign-up">
@@ -31,37 +31,39 @@
           <input type="email" name="credentials[email]" placeholder="enter email">
           <input type="password" name="credentials[password]" placeholder="enter password">
           <input type="password" name="credentials[password_confirmation]" placeholder="confirm password">
-          <button>Sign Up!</button>
+          <button class="btn-primary" >Sign Up!</button>
         </form>
 
-        <form id="change-password">
+        <form class="hide" id="change-password">
         <h2>Change Password</h2>
         <input type="password" name="passwords[old]" placeholder="Old password">
         <input type="password" name="passwords[new]" placeholder="New Password">
-        <button type="submit">Change Password</button>
+        <button class="btn-primary" type="submit">Change Password</button>
       </form>
 
-        <form id="sign-out">
+        <form class="hide" id="sign-out">
           <h2>Sign Out</h2>
-          <button type="submit">Sign out</button>
+          <button class="btn-primary" type="submit">Sign out</button>
         </form>
 
-        <button id="new-game">New Game</button>
+        <button class="hide btn-primary" id="new-game">New Game</button>
+
+        <button class="hide btn-primary" id="game-index">Total Games</button>
 
         <h4 id="gameMessage"></h4>
 
 
-        <div class="container flex-container flex-column flex-center">
+        <div id="board" class="container flex-container flex-column flex-center hide-board">
           <div class="game-board flex-container flex-wrap flex-center">
-            <div class="cell flex-container flex-center" id=0></div>
-            <div class="cell flex-container flex-center" id=1></div>
-            <div class="cell flex-container flex-center" id=2></div>
-            <div class="cell flex-container flex-center" id=3></div>
-            <div class="cell flex-container flex-center" id=4></div>
-            <div class="cell flex-container flex-center" id=5></div>
-            <div class="cell flex-container flex-center" id=6></div>
-            <div class="cell flex-container flex-center" id=7></div>
-            <div class="cell flex-container flex-center" id=8></div>
+            <div class="cell col-4 flex-container flex-center" id=0></div>
+            <div class="cell col-4 flex-container flex-center" id=1></div>
+            <div class="cell col-4 flex-container flex-center" id=2></div>
+            <div class="cell col-4 flex-container flex-center" id=3></div>
+            <div class="cell col-4 flex-container flex-center" id=4></div>
+            <div class="cell col-4 flex-container flex-center" id=5></div>
+            <div class="cell col-4 flex-container flex-center" id=6></div>
+            <div class="cell col-4 flex-container flex-center" id=7></div>
+            <div class="cell col-4 flex-container flex-center" id=8></div>
           </div>
         </div>
 

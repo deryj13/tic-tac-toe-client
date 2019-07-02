@@ -19,6 +19,12 @@ const newGame = function (responseData) {
   store.value = null
 }
 
+const getGames = event => {
+  api.indexGame()
+    .then(ui.indexGameSuccess)
+    .catch(ui.indexGameFailure)
+}
+
 const xTracker = () => {
   store.board[$(event.target).attr('id')] = store.player1
   store.value = store.player1
@@ -133,13 +139,10 @@ const move = function () {
       }
     }
   }
-  // .then(console.log('update successful'))
-  // .catch(console.log('update failure'))
-  // .then(ui.gameUpdateSuccess)
-  // .catch(ui.gameUpdateFailure)
 }
 
 module.exports = {
   newGame,
-  move
+  move,
+  getGames
 }

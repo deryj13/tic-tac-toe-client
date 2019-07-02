@@ -17,6 +17,7 @@ const gameFailureMessage = message => {
 const newGameSuccess = (responseData) => {
   store.game = responseData.game
   gameSuccessMessage('Good luck, have fun!')
+  $('#board').removeClass('hide-board')
   $('.cell').text('')
 }
 
@@ -54,6 +55,17 @@ const illegalMove = () => {
   gameFailureMessage('Invalid move!!!')
 }
 
+const indexGameSuccess = (data) => {
+  console.log('index games success!', data)
+  console.log(data.games.length)
+  gameSuccessMessage(`You have played ${data.games.length} times!`)
+}
+
+const indexGameFailure = (error) => {
+  console.log('index games failure!', error)
+  gameFailureMessage(`Unable to retrieve games!`)
+}
+
 module.exports = {
   newGameSuccess,
   newGameFailure,
@@ -61,5 +73,7 @@ module.exports = {
   player2MoveSuccess,
   theWinner,
   draw,
-  illegalMove
+  illegalMove,
+  indexGameSuccess,
+  indexGameFailure
 }

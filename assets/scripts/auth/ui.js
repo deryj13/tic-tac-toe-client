@@ -25,7 +25,13 @@ const signUpFailure = () => {
 }
 
 const signInSuccessful = responseData => {
-  console.log('responseData is ', responseData)
+  $('#change-password').removeClass('hide')
+  $('#sign-out').removeClass('hide')
+  $('#index-games').removeClass('hide')
+  $('#new-game').removeClass('hide')
+  $('#game-index').removeClass('hide')
+  $('#sign-in').addClass('hide')
+  $('#sign-up').addClass('hide')
   successMessage(`You're logged in :)`)
   store.user = responseData.user
 }
@@ -43,6 +49,15 @@ const changePassFailure = () => {
 }
 
 const signOutSuccessful = () => {
+  $('#change-password').addClass('hide')
+  $('#sign-out').addClass('hide')
+  $('#index-games').addClass('hide')
+  $('#new-game').addClass('hide')
+  $('#board').addClass('hide-board')
+  $('#game-index').addClass('hide')
+  $('#gameMessage').text('')
+  $('#sign-in').removeClass('hide')
+  $('#sign-up').removeClass('hide')
   successMessage(`You're signed out! See you again :)`)
 }
 
