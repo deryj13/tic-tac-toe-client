@@ -116,11 +116,9 @@ const move = function () {
         checkForWinner()
         gameOver()
         store.currentTurn++
-        console.log(event.target)
         api.gameUpdate()
           .then(ui.player1MoveSuccess(event.target))
           .catch(console.error)
-        console.log(store.board)
       } else {
         ui.player2MoveSuccess()
         oTracker()
@@ -131,7 +129,6 @@ const move = function () {
         api.gameUpdate()
           .then(ui.player2MoveSuccess(event.target))
           .catch(console.error)
-        console.log(store.board)
       }
     } else {
       if (drawGame() !== true) {

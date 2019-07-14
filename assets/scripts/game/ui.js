@@ -46,23 +46,18 @@ const theWinner = () => {
 }
 
 const draw = () => {
-  console.log('draw')
   gameSuccessMessage(`It's a ${store.winner}! Good game!`)
 }
 
 const illegalMove = () => {
-  console.log('illegal move!')
   gameFailureMessage('Invalid move!!!')
 }
 
 const indexGameSuccess = (data) => {
-  console.log('index games success!', data)
-  console.log(data.games.length)
   gameSuccessMessage(`You have played ${data.games.length} times!`)
 }
 
-const indexGameFailure = (error) => {
-  console.log('index games failure!', error)
+const indexGameFailure = () => {
   gameFailureMessage(`Unable to retrieve games!`)
 }
 
