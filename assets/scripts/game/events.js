@@ -120,11 +120,7 @@ const move = function () {
         store.currentTurn++
         api.gameUpdate()
           .then(ui.player1MoveSuccess(event.target))
-<<<<<<< HEAD
-          .catch(console.error)
-=======
           .catch(ui.player1MoveFailure(event.target))
->>>>>>> game
       } else {
         ui.player2MoveSuccess()
         oTracker()
@@ -134,11 +130,7 @@ const move = function () {
         store.currentTurn--
         api.gameUpdate()
           .then(ui.player2MoveSuccess(event.target))
-<<<<<<< HEAD
-          .catch(console.error)
-=======
           .catch(ui.player2MoveFailure(event.target))
->>>>>>> game
       }
     } else {
       if (drawGame() !== true) {

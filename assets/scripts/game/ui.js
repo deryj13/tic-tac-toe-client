@@ -69,11 +69,7 @@ const indexGameSuccess = (data) => {
   gameSuccessMessage(`You have played ${data.games.length} times!`)
 }
 
-<<<<<<< HEAD
-const indexGameFailure = () => {
-=======
 const indexGameFailure = (data) => {
->>>>>>> game
   gameFailureMessage(`Unable to retrieve games!`)
 }
 
