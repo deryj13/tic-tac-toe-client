@@ -33,6 +33,12 @@ const player1MoveSuccess = (event) => {
   }
 }
 
+const player1MoveFailure = (event) => {
+  if (player1MoveSuccess === false) {
+    gameFailureMessage(`Player 2 failed to make a move!`)
+  }
+}
+
 const player2MoveSuccess = event => {
   $(event).text(store.player2)
   $(event).css('color', 'red')
@@ -41,39 +47,47 @@ const player2MoveSuccess = event => {
   }
 }
 
+const player2MoveFailure = (event) => {
+  if (player2MoveSuccess === false) {
+    gameFailureMessage(`Player 2 failed to make a move!`)
+  }
+}
+
 const theWinner = () => {
   gameSuccessMessage(`${store.winner}, WINS!`)
 }
 
 const draw = () => {
-  console.log('draw')
   gameSuccessMessage(`It's a ${store.winner}! Good game!`)
 }
 
 const illegalMove = () => {
-  console.log('illegal move!')
   gameFailureMessage('Invalid move!!!')
 }
 
 const indexGameSuccess = (data) => {
-  console.log('index games success!', data)
-  console.log(data.games.length)
   gameSuccessMessage(`You have played ${data.games.length} times!`)
 }
 
-const indexGameFailure = (error) => {
-  console.log('index games failure!', error)
+const indexGameFailure = (data) => {
   gameFailureMessage(`Unable to retrieve games!`)
+}
+
+const startNewGame = () => {
+  gameSuccessMessage(`GAME OVER, start a new game!`)
 }
 
 module.exports = {
   newGameSuccess,
   newGameFailure,
   player1MoveSuccess,
+  player1MoveFailure,
   player2MoveSuccess,
+  player2MoveFailure,
   theWinner,
   draw,
   illegalMove,
   indexGameSuccess,
-  indexGameFailure
+  indexGameFailure,
+  startNewGame
 }
