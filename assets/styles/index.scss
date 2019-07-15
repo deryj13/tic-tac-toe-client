@@ -1,8 +1,23 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-  font-family: 'Comic Sans MS', sans-serif;
+  font-family: 'Gruppo', cursive;
   height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+}
+
+.top {
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
 }
 
 .flex-container {
