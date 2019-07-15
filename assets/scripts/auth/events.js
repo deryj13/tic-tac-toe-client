@@ -6,10 +6,6 @@ const ui = require('./ui')
 
 const onSignUp = event => {
   event.preventDefault()
-<<<<<<< HEAD
-
-=======
->>>>>>> game
   const form = event.target
   const formData = getFormFields(form)
   api.signUp(formData)
@@ -19,10 +15,6 @@ const onSignUp = event => {
 
 const onSignIn = event => {
   event.preventDefault()
-<<<<<<< HEAD
-
-=======
->>>>>>> game
   const form = event.target
   const formData = getFormFields(form)
   api.signIn(formData)
@@ -32,10 +24,6 @@ const onSignIn = event => {
 
 const onChangePassword = event => {
   event.preventDefault()
-<<<<<<< HEAD
-
-=======
->>>>>>> game
   const form = event.target
   const formData = getFormFields(form)
   api.changePassword(formData)
