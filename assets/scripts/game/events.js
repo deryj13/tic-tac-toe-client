@@ -107,9 +107,11 @@ const gameOver = function () {
 }
 
 const move = function () {
-  store.movesPlayed++
-  if (store.over !== true) {
+  if (store.over === true) {
+    ui.startNewGame()
+  } else if (store.over !== true) {
     if ($(event.target).text() === '') {
+      store.movesPlayed++
       if (store.currentTurn === 1) {
         xTracker()
         checkForDraw()
@@ -118,7 +120,11 @@ const move = function () {
         store.currentTurn++
         api.gameUpdate()
           .then(ui.player1MoveSuccess(event.target))
+<<<<<<< HEAD
           .catch(console.error)
+=======
+          .catch(ui.player1MoveFailure(event.target))
+>>>>>>> game
       } else {
         ui.player2MoveSuccess()
         oTracker()
@@ -128,7 +134,11 @@ const move = function () {
         store.currentTurn--
         api.gameUpdate()
           .then(ui.player2MoveSuccess(event.target))
+<<<<<<< HEAD
           .catch(console.error)
+=======
+          .catch(ui.player2MoveFailure(event.target))
+>>>>>>> game
       }
     } else {
       if (drawGame() !== true) {
