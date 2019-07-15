@@ -1,23 +1,32 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
+  background: #1F1C2C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
   font-family: 'Gruppo', cursive;
   height: 100%;
 }
 
-h1 {
+h1, h2, h3 {
+  font-weight: bold;
   text-align: center;
 }
 
 form {
   display: inline-block;
+  font-weight: bold;
   padding: 5px;
   text-align: center;
 }
 
 .top {
+  background-image: url('https://i.imgur.com/DCaPptw.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 250px;
   padding: 10px;
-  background: rgba(0,0,0,0.5);
 }
 
 .flex-container {
@@ -43,14 +52,14 @@ form {
 }
 
 .cell {
-  border: 2px solid rgb(0, 100, 255);
+  border: 2px solid rgb(255, 255, 255);
   font-size: 50px;
   height: 150px;
   width: 150px;
 }
 
 .cell:hover {
-  border-color: #fffaf0;
+  border-color: #12d7ff;
 }
 
 .game-board {

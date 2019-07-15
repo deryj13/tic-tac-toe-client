@@ -27,7 +27,7 @@ const newGameFailure = () => {
 
 const player1MoveSuccess = (event) => {
   $(event).text(store.player1)
-  $(event).css('color', 'blue')
+  $(event).css('color', 'white')
   if (!store.over) {
     gameSuccessMessage(`Nice! Player 2's turn!`)
   }
@@ -41,7 +41,7 @@ const player1MoveFailure = (event) => {
 
 const player2MoveSuccess = event => {
   $(event).text(store.player2)
-  $(event).css('color', 'red')
+  $(event).css('color', 'white')
   if (!store.over) {
     gameSuccessMessage(`Awesome! Player 1's turn!`)
   }
