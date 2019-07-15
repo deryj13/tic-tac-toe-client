@@ -35,14 +35,14 @@ see the grid has kept its design.
 The following user stories, helped develop and contributed to the game logic and
 features of my site:
 
-... 1. As a User, I'd like to be able to create an account, if I do not have one
-... 2. As a User, I would want to sign in and have access to new games
-... 3. As a User, I'd like to be able to play as if I have someone by my side (or as if I'm going against myself)
-... 4. As a User, I'd like some notification for invalid/illegal moves
-... 5. As a User, I'd like some notification informing me when I win, lose, or draw
-... 6. As a User, I'd like to be able to start a new game after a game is finished
-... 7. As a User, I'd like to have access to my statistics, whether it be total games, wins or losses
-... 8. As a User, I would want to be able to sign out with all my information still stored somewhere
+1. As a User, I'd like to be able to create an account, if I do not have one
+2. As a User, I would want to sign in and have access to new games
+3. As a User, I'd like to be able to play as if I have someone by my side (or as if I'm going against myself)
+4. As a User, I'd like some notification for invalid/illegal moves
+5. As a User, I'd like some notification informing me when I win, lose, or draw
+6. As a User, I'd like to be able to start a new game after a game is finished
+7. As a User, I'd like to have access to my statistics, whether it be total games, wins or losses
+8. As a User, I would want to be able to sign out with all my information still stored somewhere
 
 ## Future Iterations
 
